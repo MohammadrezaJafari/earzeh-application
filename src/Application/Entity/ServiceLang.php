@@ -24,7 +24,7 @@ class ServiceLang
     /**
      * @var boolean
      *
-     * @ORM\Column(name="enable", type="boolean", nullable=false)
+     * @ORM\Column(name="`enable`", type="boolean", nullable=false)
      */
     private $enable;
 
@@ -45,14 +45,22 @@ class ServiceLang
     /**
      * @var integer
      *
+<<<<<<< HEAD
      * @ORM\Column(name="order", type="integer", nullable=false)
+=======
+     * @ORM\Column(name="`order`", type="integer", nullable=false)
+>>>>>>> upstream/master
      */
     private $order;
 
     /**
      * @var \DateTime
      *
+<<<<<<< HEAD
      * @ORM\Column(name="deleted at", type="datetime", nullable=true)
+=======
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
+>>>>>>> upstream/master
      */
     private $deletedAt;
 
@@ -89,6 +97,11 @@ class ServiceLang
      * })
      */
     private $service;
+
+    public function __construct(){
+        $this->createdAt = (new \DateTime(date("Y-m-d H:i:s")));
+
+    }
 
 
     /**
@@ -265,10 +278,10 @@ class ServiceLang
     /**
      * Set language
      *
-     * @param \Blog\Entity\Language $language
+     * @param \Application\Entity\Language $language
      * @return ServiceLang
      */
-    public function setLanguage(\Blog\Entity\Language $language = null)
+    public function setLanguage(\Application\Entity\Language $language = null)
     {
         $this->language = $language;
 
@@ -278,7 +291,7 @@ class ServiceLang
     /**
      * Get language
      *
-     * @return \Blog\Entity\Language 
+     * @return \Application\Entity\Language
      */
     public function getLanguage()
     {
@@ -288,10 +301,10 @@ class ServiceLang
     /**
      * Set service
      *
-     * @param \Blog\Entity\Service $service
+     * @param \Application\Entity\Service $service
      * @return ServiceLang
      */
-    public function setService(\Blog\Entity\Service $service = null)
+    public function setService(\Application\Entity\Service $service = null)
     {
         $this->service = $service;
 
@@ -301,7 +314,7 @@ class ServiceLang
     /**
      * Get service
      *
-     * @return \Blog\Entity\Service 
+     * @return \Application\Entity\Service
      */
     public function getService()
     {

@@ -36,6 +36,12 @@ namespace Application\Entity;
              * @ORM\Column(name="attribute", type="text", nullable=true)
              */
             private $attribute;
+            /**
+             * @var string
+             *
+             * @ORM\Column(name="code", type="string", length=45, nullable=false)
+             */
+            private $code;
 
     /**
      * Get id
@@ -82,14 +88,37 @@ namespace Application\Entity;
 
         return $this;
     }
+            /**
+             * Get attribute
+             *
+             * @return string
+             */
+            public function getAttribute()
+            {
+                return $this->attribute;
+            }
 
     /**
-     * Get attribute
+     * Get code
      *
      * @return string 
      */
-    public function getAttribute()
+    public function getCode()
     {
-        return $this->attribute;
+        return $this->code;
     }
+            /**
+             * Set code
+             *
+             * @param string $code
+             * @return Language
+             */
+            public function setCode($code)
+            {
+                $this->code = $code;
+
+                return $this;
+            }
+
+
 }

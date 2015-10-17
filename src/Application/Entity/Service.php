@@ -45,10 +45,10 @@ class Service
     /**
      * Set parent
      *
-     * @param \Blog\Entity\Service $parent
+     * @param \Application\Entity\Service $parent
      * @return Service
      */
-    public function setParent(\Blog\Entity\Service $parent = null)
+    public function setParent(\Application\Entity\Service $parent = null)
     {
         $this->parent = $parent;
 
@@ -58,7 +58,7 @@ class Service
     /**
      * Get parent
      *
-     * @return \Blog\Entity\Service 
+     * @return \Application\Entity\Service
      */
     public function getParent()
     {

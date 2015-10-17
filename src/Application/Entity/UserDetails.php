@@ -57,13 +57,6 @@ class UserDetails
     private $ticketManager;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="text", nullable=true)
-     */
-    private $address;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
