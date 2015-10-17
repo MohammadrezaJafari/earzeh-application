@@ -9,38 +9,38 @@
 namespace Application;
 return array(
 
-'doctrine'=>array(
-    'driver' => array(
-        __NAMESPACE__.'_driver' => array(
-            'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-            'cache' => 'array',
-            'paths' => array(__DIR__ . '/../src/'.__NAMESPACE__.'/Entity')
-        ),
+    'doctrine'=>array(
+        'driver' => array(
+            __NAMESPACE__.'_driver' => array(
+                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/'.__NAMESPACE__.'/Entity')
+            ),
 
-        'orm_default' => array(
-            'drivers' => array(
-                __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                )
+            )),
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'Application\Entity\User',
+                'identity_property' => 'username',
+                'credential_property' => 'password',
             )
-        )),
-    'authentication' => array(
-        'orm_default' => array(
-            'object_manager' => 'Doctrine\ORM\EntityManager',
-            'identity_class' => 'Application\Entity\User',
-            'identity_property' => 'username',
-            'credential_property' => 'password',
         )
-    )
-),
+    ),
 
     'router' => array(
         'routes' => array(
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/',
+                    'route'    => '/dashboard',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
+                        'action'     => 'dashboard',
                     ),
                 ),
             ),
@@ -114,6 +114,8 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+            __DIR__ . '/../../../vendor/Ellie/library/Ellie/UI/view'
+
         ),
     ),
     // Placeholder for console routes

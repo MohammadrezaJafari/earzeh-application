@@ -6,56 +6,87 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ServiceLang
+ *
+ * @ORM\Table(name="service_lang", indexes={@ORM\Index(name="service_id_idx", columns={"service_id"}), @ORM\Index(name="language_id_idx", columns={"language_id"})})
+ * @ORM\Entity
  */
 class ServiceLang
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="enable", type="boolean", nullable=false)
      */
     private $enable;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=200, nullable=false)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="order", type="integer", nullable=false)
      */
     private $order;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="deleted at", type="datetime", nullable=true)
      */
     private $deletedAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
-     * @var \Blog\Entity\Language
+     * @var \Language
+     *
+     * @ORM\ManyToOne(targetEntity="Language")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     * })
      */
     private $language;
 
     /**
-     * @var \Blog\Entity\Service
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     * })
      */
     private $service;
 

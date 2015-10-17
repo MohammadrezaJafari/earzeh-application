@@ -6,16 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Service
+ *
+ * @ORM\Table(name="service", indexes={@ORM\Index(name="parent_id_idx", columns={"parent"})})
+ * @ORM\Entity
  */
 class Service
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var \Blog\Entity\Service
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parent", referencedColumnName="id")
+     * })
      */
     private $parent;
 

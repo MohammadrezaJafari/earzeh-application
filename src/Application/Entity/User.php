@@ -100,9 +100,9 @@ class User
      */
     private $role;
 
-    public function _construct()
+    public function __construct()
     {
-        $this->createdAt = new \DateTime(date("Y-m-d H:i:s"));
+        $this->createdAt = (new \DateTime(date("Y-m-d H:i:s")));
     }
 
 
@@ -122,7 +122,7 @@ class User
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getusername()
     {
@@ -145,7 +145,7 @@ class User
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -168,7 +168,7 @@ class User
     /**
      * Get country
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -191,7 +191,7 @@ class User
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -214,7 +214,7 @@ class User
     /**
      * Get avatar
      *
-     * @return string 
+     * @return string
      */
     public function getAvatar()
     {
@@ -237,7 +237,7 @@ class User
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {
@@ -260,7 +260,7 @@ class User
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -283,7 +283,7 @@ class User
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -293,10 +293,10 @@ class User
     /**
      * Set defaultLanguage
      *
-     * @param \Blog\Entity\Language $defaultLanguage
+     * @param \Application\Entity\Language $defaultLanguage
      * @return User
      */
-    public function setDefaultLanguage(\Blog\Entity\Language $defaultLanguage = null)
+    public function setDefaultLanguage(\Application\Entity\Language $defaultLanguage = null)
     {
         $this->defaultLanguage = $defaultLanguage;
 
@@ -306,7 +306,7 @@ class User
     /**
      * Get defaultLanguage
      *
-     * @return \Blog\Entity\Language 
+     * @return \Application\Entity\Language
      */
     public function getDefaultLanguage()
     {
@@ -316,10 +316,10 @@ class User
     /**
      * Set role
      *
-     * @param \Blog\Entity\Role $role
+     * @param \Application\Entity\Role $role
      * @return User
      */
-    public function setRole(\Blog\Entity\Role $role = null)
+    public function setRole(\Application\Entity\Role $role = null)
     {
         $this->role = $role;
 
@@ -329,7 +329,7 @@ class User
     /**
      * Get role
      *
-     * @return \Blog\Entity\Role 
+     * @return \Application\Entity\Role
      */
     public function getRole()
     {

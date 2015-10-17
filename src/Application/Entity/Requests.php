@@ -4,48 +4,76 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Requests
+ *
+ * @ORM\Table(name="requests", indexes={@ORM\Index(name="service_id_idx", columns={"service_id"}), @ORM\Index(name="user_id_idx", columns={"user_id"})})
+ * @ORM\Entity
  */
 class Requests
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=45, nullable=false)
      */
     private $type;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=160, nullable=true)
      */
     private $description;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
     private $deletedAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
-     * @var \Blog\Entity\Service
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     * })
      */
     private $service;
 
     /**
-     * @var \Blog\Entity\User
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      */
     private $user;
 

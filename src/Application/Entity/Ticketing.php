@@ -6,61 +6,97 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Ticketing
+ *
+ * @ORM\Table(name="ticketing", indexes={@ORM\Index(name="user_id_idx", columns={"user"}), @ORM\Index(name="service_idx", columns={"service"}), @ORM\Index(name="assign_to_user_id_idx", columns={"assign_to"})})
+ * @ORM\Entity
  */
 class Ticketing
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=200, nullable=true)
      */
     private $title;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="priority", type="string", length=45, nullable=true)
      */
     private $priority;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="closed", type="boolean", nullable=false)
      */
     private $closed;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="messages", type="text", nullable=true)
      */
     private $messages;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
     private $deletedAt;
 
     /**
-     * @var \Blog\Entity\User
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="assign_to", referencedColumnName="id")
+     * })
      */
     private $assignTo;
 
     /**
-     * @var \Blog\Entity\Service
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="service", referencedColumnName="id")
+     * })
      */
     private $service;
 
     /**
-     * @var \Blog\Entity\User
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * })
      */
     private $user;
 

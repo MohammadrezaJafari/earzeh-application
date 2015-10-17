@@ -16,12 +16,12 @@ class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
+        $translator = $e->getApplication()->getServiceManager()->get('translator');
+        $translator->setLocale("en_US");
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
-
-
 
     public function getConfig()
     {

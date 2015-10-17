@@ -6,26 +6,45 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * WorkAt
+ *
+ * @ORM\Table(name="work_at", indexes={@ORM\Index(name="user_id_idx", columns={"user"}), @ORM\Index(name="service_id_idx", columns={"service"})})
+ * @ORM\Entity
  */
 class WorkAt
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="started_at", type="datetime", nullable=false)
      */
     private $startedAt;
 
     /**
-     * @var \Blog\Entity\Service
+     * @var \Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="service", referencedColumnName="id")
+     * })
      */
     private $service;
 
     /**
-     * @var \Blog\Entity\User
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * })
      */
     private $user;
 
