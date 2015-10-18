@@ -26,36 +26,37 @@ namespace Application\Entity;
          * @ORM\Column(name="name", type="string", length=50, nullable=true)
          */
         private $name;
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Role
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        /**
+         * Get id
+         *
+         * @return integer
+         */
+        public function getId()
+        {
+            return $this->id;
+        }
 
-        return $this;
-    }
+        /**
+         * Set name
+         *
+         * @param string $name
+         * @return Role
+         */
+        public function setName($name)
+        {
+            $this->name = $name;
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+            return $this;
+        }
+
+        /**
+         * Get name
+         *
+         * @return string
+         */
+        public function getName()
+        {
+            return $this->name;
+        }
 }

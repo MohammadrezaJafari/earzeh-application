@@ -13,8 +13,20 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class BaseController extends AbstractActionController{
 
+    protected $translator;
+    protected $lang;
     public function onDispatch(\Zend\Mvc\MvcEvent $e)
     {
+        $this->lang = $this->params('lang');
+        $this->translator = $e->getApplication()->getServiceManager()->get('translator');
+
+        if($this->lang == 'en'){
+            $this->translator->setLocale("en_US");
+        }
+        else{
+            $this->translator->setLocale("fa_IR");
+        }
+
         $layout = $this->layout();
         $layout->setTemplate('layout/master');
         $auth = $e->getApplication()->getServiceManager()->get('Ellie\Service\Authentication');
@@ -22,7 +34,6 @@ class BaseController extends AbstractActionController{
         {
             return $this->redirect()->toRoute("user",array("controller"=>"authentication","action"=>"login"));
         }
-
         if($auth->hasIdentity())
         {
             $user = $auth->getIdentity();

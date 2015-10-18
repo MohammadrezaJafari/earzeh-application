@@ -55,6 +55,13 @@ class User
     /**
      * @var string
      *
+     * @ORM\Column(name="status", type="string", length=45, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="avatar", type="string", length=45, nullable=true)
      */
     private $avatar;
@@ -105,6 +112,10 @@ class User
         $this->createdAt = (new \DateTime(date("Y-m-d H:i:s")));
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set username
@@ -150,6 +161,30 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**
