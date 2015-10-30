@@ -1,0 +1,23 @@
+    <?php foreach ($this->container as $page ): ?>
+        <li>
+            <a href="<?=$page->getHref()?>">
+                <i class="<?=$page->get("params")["icon"]?>"></i>
+                <span> <?=$this->translate($page->get("label"))?></span>
+            </a>
+            <?php $first=true;$hasPage=false;?>
+            <?php foreach($page as $child):?>
+            <?php if($first):?>
+            <?php $first = false;$hasPage=true;?>
+                <ul class="sub-menu">
+                    <?php endif;?>
+                    <li  >
+                        <a href="<?=$child->getHref()?>">
+                            <?=$this->translate($child->get("label"))?>
+                        </a>
+                    </li>
+                    <?php endforeach;?>
+                    <?php if($hasPage):?>
+                </ul>
+            <?php endif;?>
+        </li>
+    <?php endforeach;?>

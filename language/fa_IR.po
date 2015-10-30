@@ -30,32 +30,9 @@ msgstr "خروج"
 
 #: ../view/application/index/index.phtml:2
 #, php-format
-msgid "Address"
-msgstr "آدرس"
+msgid "Profile"
+msgstr "پروفایل"
 
-#: ../view/application/index/index.phtml:3
-#, php-format
-msgid "Email"
-msgstr "ایمیل"
+msgid "Messages"
+msgstr "پیام های من"
 
-#: ../view/application/index/index.phtml:4
-msgid "Password"
-msgstr "رمز عبور"
-
-#: ../view/application/index/index.phtml:10
-msgid "Role"
-msgstr "نقش"
-
-#: ../view/application/index/index.phtml:11
-#, php-format
-msgid "Default Language"
-msgstr "زبان پیش فرض"
-
-
-#: ../view/application/index/index.phtml:12
-msgid "Country"
-msgstr "کشور"
-
-#: ../view/application/index/index.phtml:16
-msgid "Description"
-msgstr "توضیحات"

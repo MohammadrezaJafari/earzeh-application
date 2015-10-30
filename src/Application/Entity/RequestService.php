@@ -8,10 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Requests
  *
- * @ORM\Table(name="requests", indexes={@ORM\Index(name="service_id_idx", columns={"service_id"}), @ORM\Index(name="user_id_idx", columns={"user_id"})})
+ * @ORM\Table(name="requests_services", indexes={@ORM\Index(name="service_id_idx", columns={"service_id"}), @ORM\Index(name="request_id_idx", columns={"request_id"})})
  * @ORM\Entity
  */
-class Requests
+class RequestService
 {
     /**
      * @var integer
@@ -22,43 +22,23 @@ class Requests
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=45, nullable=false)
-     */
-    private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=160, nullable=true)
+     * @ORM\Column(name="status", type="string", length=45, nullable=false)
      */
-    private $description;
+    private $status;
+
+//    /**
+//     * @var \DateTime
+//     *
+//     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+//     */
+//    private $updatedAt;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
-     */
-    private $deletedAt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @var \Service
+     * @var Service
      *
      * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumns({
@@ -68,14 +48,21 @@ class Requests
     private $service;
 
     /**
-     * @var \User
+     * @var Request
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Request")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="request_id", referencedColumnName="id")
      * })
      */
-    private $user;
+    private $request;
+
+
+    public function __construct()
+    {
+        $this->createdAt = (new \DateTime(date("Y-m-d H:i:s")));
+
+    }
 
 
     /**
@@ -89,50 +76,29 @@ class Requests
     }
 
     /**
-     * Set type
+     * Set title
      *
-     * @param string $type
-     * @return Requests
+     * @param string $status
+     * @return Request
      */
-    public function setType($type)
+    public function setStatus($status)
     {
-        $this->type = $type;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get title
      *
-     * @return string 
+     * @return string
      */
-    public function getType()
+    public function getStatus()
     {
-        return $this->type;
+        return $this->status;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Requests
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
 
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
     /**
      * Set deletedAt
@@ -206,10 +172,10 @@ class Requests
     /**
      * Set service
      *
-     * @param \Blog\Entity\Service $service
-     * @return Requests
+     * @param \Application\Entity\Service $service
+     * @return Service
      */
-    public function setService(\Blog\Entity\Service $service = null)
+    public function setService(\Application\Entity\Service $service = null)
     {
         $this->service = $service;
 
@@ -219,7 +185,7 @@ class Requests
     /**
      * Get service
      *
-     * @return \Blog\Entity\Service 
+     * @return \Application\Entity\Service
      */
     public function getService()
     {
@@ -229,12 +195,12 @@ class Requests
     /**
      * Set user
      *
-     * @param \Blog\Entity\User $user
+     * @param \Application\Entity\Request $request
      * @return Requests
      */
-    public function setUser(\Blog\Entity\User $user = null)
+    public function setRequest(\Application\Entity\Request $request = null)
     {
-        $this->user = $user;
+        $this->request = $request;
 
         return $this;
     }
@@ -242,10 +208,10 @@ class Requests
     /**
      * Get user
      *
-     * @return \Blog\Entity\User 
+     * @return \Application\Entity\User
      */
-    public function getUser()
+    public function getRequest()
     {
-        return $this->user;
+        return $this->request;
     }
 }

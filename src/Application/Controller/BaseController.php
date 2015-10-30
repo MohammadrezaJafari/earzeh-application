@@ -33,7 +33,7 @@ class BaseController extends AbstractActionController{
 
 
         $auth = $e->getApplication()->getServiceManager()->get('Ellie\Service\Authentication');
-        if(!$auth->hasIdentity() && $this->params('action') != 'login')
+        if(!$auth->hasIdentity() && $this->params('action') != 'login' && $this->params('action') != 'register')
         {
             return $this->redirect()->toRoute("user",array("controller"=>"authentication","action"=>"login"));
         }
@@ -42,7 +42,6 @@ class BaseController extends AbstractActionController{
             $user = $auth->getIdentity();
             $this->layout()->username = $user->getUsername();
             $this->base = $this->getRequest()->getBasePath();
-            $layout->setVariables(['menu' => $this->getServiceLocator()->get('Config')['menu']]);
         }
 
         return parent::onDispatch($e);

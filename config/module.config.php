@@ -1,11 +1,4 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
 namespace Application;
 return array(
 
@@ -35,9 +28,9 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'segment',
                 'options' => array(
-                    'route'    => '/dashboard',
+                    'route'    => '[/:lang]/dashboard[/:controller[/:action[/:id]]]',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'dashboard',
@@ -84,6 +77,10 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+        'factories' => array(
+            'Navigation' => 'Ellie\Service\Navigation\ServiceFactory',
+            // 'Ellie\Service\Authentication' => 'Ellie\Service\Authentication\ServiceFactory',
+        ),
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -95,6 +92,7 @@ return array(
             ),
         ),
     ),
+
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
@@ -107,7 +105,7 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/master.phtml',
+            'layout/master'           => __DIR__ . '/../view/layout/master.phtml',
             //'layout/master'  => __DIR__ . ''
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
@@ -128,4 +126,29 @@ return array(
             ),
         ),
     ),
+
+    'navigation_manager' => [
+//        "home"=>array(
+//            "label" => "Dashboard",
+//            'route' => 'home',
+//            'inmenu'=>true,
+//            'icon'=>"fa fa-home",
+//            'params' => array(
+//                'language'=>"fa",
+//                'icon'=>"fa fa-home"
+//            ),
+//            'pages' => array(
+//                array(
+//                    'label' => 'Child #1',
+//                    'route' => 'service',
+//                    'params'=>array(
+//                        'lang'=>'en',
+//                        'controller'=>'management',
+//                        'action'=>'edit',
+//                        'id'=>'20'
+//                    )
+//                ),
+//            ),
+//        ),
+    ],
 );

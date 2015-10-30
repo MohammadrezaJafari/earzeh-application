@@ -71,15 +71,10 @@ if (defined('RUNNING_FROM_ROOT')) {
                     </div>
                     <ul class="cl-vnavigation">
                         <li class="active" ><a href="<?php echo $this->url('home'); ?>"><i class="fa fa-home"></i><span><?php echo $this->translate('Dashboard') ?></span></a></li>
-                        <?php foreach ($this->menu as $menus => $menuBar) :?>
-                            <li><a href="#"><i class="fa fa-list-alt"></i><span><?php echo $menus?></span></a>
-                                <ul class="sub-menu">
-                                    <?php foreach ($menuBar as $label => $link) :?>
-                                        <li><a href="<?php echo $link?>"><?php echo $label?></a></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php
+                            $this->navigation('Navigation')->menu()->setPartial(array('nav/menu' ,'default'));
+                            echo $this->navigation('Navigation')->menu()->render();
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -105,8 +100,8 @@ if (defined('RUNNING_FROM_ROOT')) {
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">My Account</a></li>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Messages</a></li>
+                                <li><a href="#"><?php echo $this->translate('Profile') ?></a></li>
+                                <li><a href="#"><?php echo $this->translate('Messages') ?></a></li>
                                 <li class="divider"></li>
                                 <li><a href="<?php echo $this->url('user', array('action' => 'logout')); ?>"><?php echo $this->translate('Sign Out') ?></a></li>
                             </ul>
@@ -230,6 +225,8 @@ echo $this->headScript()
     ->appendFile($this->basePath() . '/assets/layout/js/jquery.niftymodals/js/jquery.modalEffects.js')
     ->appendFile($this->basePath() . '/assets/ui/datatable/js/boot.js')
     ->appendFile($this->basePath() . '/assets/layout/js/jquery.gritter/js/jquery.gritter.js')
+    ->appendFile($this->basePath() . '/assets/layout/js/selectTree.js')
+
 //    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.js')
 //    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.pie.js')
 //    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.resize.js')
