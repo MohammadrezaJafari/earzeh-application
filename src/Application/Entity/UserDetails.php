@@ -36,13 +36,6 @@ class UserDetails
     private $info;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="active", type="boolean", nullable=false)
-     */
-    private $active;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=45, nullable=true)
@@ -59,10 +52,8 @@ class UserDetails
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -121,29 +112,6 @@ class UserDetails
     public function getInfo()
     {
         return $this->info;
-    }
-
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     * @return UserDetails
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean 
-     */
-    public function getActive()
-    {
-        return $this->active;
     }
 
     /**

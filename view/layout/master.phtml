@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+
 if (defined('RUNNING_FROM_ROOT')) {
     $this->plugin('basePath')->setBasePath($this->basePath().'/public');
     // die($this->basePath());
@@ -11,37 +12,30 @@ if (defined('RUNNING_FROM_ROOT')) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="images/icon.png">
+<!--    <link rel="shortcut icon" href="images/icon.png">-->
 
-    <title>Flat Dream UI</title>
+    <title>EArzeh</title>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
 
     <!-- Bootstrap core CSS -->
-    <?php echo $this->headLink()
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/bootstrap/dist/css/bootstrap.css')
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/jquery.gritter/css/jquery.gritter.css')
-        ->appendStylesheet($this->basePath() . '/assets/layout/fonts/font-awesome-4/css/font-awesome.min.css');
+    <link href='<?php echo $this->basePath() . '/assets/layout/js/bootstrap/dist/css/bootstrap.css'?>' rel='stylesheet' type='text/css'>
+    <link href='<?php echo $this->basePath() . '/assets/layout/fonts/font-awesome-4/css/font-awesome.min.css'?>' rel='stylesheet' type='text/css'>
 
-    $this->headLink()->deleteContainer();
-
-    ?>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <?php
-        echo $this->headScript()->prependFile($this->basePath() . '/assets/layout/../../assets/js/html5shiv.js')
-    ->prependFile($this->basePath() . '/assets/layout/../../assets/js/respond.min.js');
-    ?>
+    <link href='<?php echo $this->basePath() . '/assets/layout/../../assets/js/html5shiv.js'?>' rel='stylesheet' type='text/css'>
+    <link href='<?php echo $this->basePath() . '/assets/layout/../../assets/js/respond.min.js'?>' rel='stylesheet' type='text/css'>
+
     <![endif]-->
-    <?php echo $this->headLink()
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/jquery.nanoscroller/nanoscroller.css')
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/jquery.codemirror/lib/codemirror.css')
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/jquery.codemirror/theme/ambiance.css')
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/jquery.vectormaps/jquery-jvectormap-1.2.2.css')
-        ->appendStylesheet($this->basePath() . '/assets/layout/js/dropzone/css/dropzone.css')
-        ->appendStylesheet($this->basePath() . "/assets/layout/css/$this->lang/style.css");
-    $this->headLink()->deleteContainer();
+
+    <link href='<?php echo $this->basePath() . '/assets/layout/js/jquery.nanoscroller/nanoscroller.css'?>' rel='stylesheet' type='text/css'>
+    <link href='<?php echo $this->basePath() . "/assets/layout/css/$this->lang/style.css"?>' rel='stylesheet' type='text/css'>
+
+    <?php echo
+        $this->headLink();
+        $this->headLink()->deleteContainer();
     ?>
 </head>
 <body>
@@ -59,18 +53,10 @@ if (defined('RUNNING_FROM_ROOT')) {
                         </div>
                     </div>
                     <div class="side-user">
-                        <div class="avatar"><img src="assets/layout/images/avatar6.jpg" alt="Avatar" /></div>
-                        <div class="info">
-                            <p>40 <b>GB</b> / 100 <b>GB</b><span><a href="#"><i class="fa fa-plus"></i></a></span></p>
-                            <div class="progress progress-user">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                    <span class="sr-only">50% Complete (success)</span>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="avatar"><img style="width: 100px" src="<?php echo $this->basePath()?>/assets/layout/images/ea.png" alt="Avatar" /></div>
                     </div>
                     <ul class="cl-vnavigation">
-                        <li class="active" ><a href="<?php echo $this->url('home'); ?>"><i class="fa fa-home"></i><span><?php echo $this->translate('Dashboard') ?></span></a></li>
+                        <li class="active" ><a href="<?php echo $this->url('home',['lang' => $this->lang]); ?>"><i class="fa fa-home"></i><span><?php echo $this->translate('Dashboard') ?></span></a></li>
                         <?php
                             $this->navigation('Navigation')->menu()->setPartial(array('nav/menu' ,'default'));
                             echo $this->navigation('Navigation')->menu()->render();
@@ -94,7 +80,19 @@ if (defined('RUNNING_FROM_ROOT')) {
                     <ul class="nav navbar-nav navbar-right user-nav">
                         <li class="dropdown profile_menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img alt="Avatar" src="assets/layout/images/avatar6-2.jpg" />
+                                <span><?php echo $this->translate('Default Language') ?></span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo $this->url('home', array('lang' => $this->lang,'controller' => 'Application\Controller\Index','action' => 'lang', 'id'=>'en')); ?>"><?php echo $this->translate('English') ?></a></li>
+                                <li><a href="<?php echo $this->url('home', array('lang' => $this->lang,'controller' => 'Application\Controller\Index','action' => 'lang', 'id'=>'fa')); ?>"><?php echo $this->translate('Persian') ?></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right user-nav">
+                        <li class="dropdown profile_menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img style="width: 100px" src="<?php echo $this->basePath()?>/assets/layout/images/ea.png" alt="Avatar" />
                                 <span><?php echo $this->username ?></span>
                                 <b class="caret"></b>
                             </a>
@@ -118,22 +116,17 @@ if (defined('RUNNING_FROM_ROOT')) {
                                             <ul>
                                                 <li>
                                                     <a href="#">
-                                                        <img src="assets/layout/images/avatar2.jpg" alt="avatar" /><span class="date pull-right">13 Sept.</span> <span class="name">Daniel</span> Hey! How are you?
+                                                        <img src="<?php echo $this->basePath()?>/assets/layout/images/avatar2.jpg" alt="avatar" /><span class="date pull-right">13 Sept.</span> <span class="name">Daniel</span> Hey! How are you?
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <img src="assets/layout/images/avatar_50.jpg" alt="avatar" /><span class="date pull-right">20 Oct.</span><span class="name">Adam</span> Hi! Can you fix my phone?
+                                                        <img src="<?php echo $this->basePath()?>/assets/layout/images/avatar_50.jpg" alt="avatar" /><span class="date pull-right">20 Oct.</span><span class="name">Adam</span> Hi! Can you fix my phone?
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <img src="assets/layout/images/avatar4_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Michael</span> Regards!
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="assets/layout/images/avatar3_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Lucy</span> Hello, my name is Lucy
+                                                        <img src="<?php echo $this->basePath()?>/assets/layout/images/avatar4_50.jpg" alt="avatar" /><span class="date pull-right">2 Nov.</span><span class="name">Michael</span> Regards!
                                                     </a>
                                                 </li>
                                             </ul>
@@ -170,6 +163,12 @@ if (defined('RUNNING_FROM_ROOT')) {
 
 
         <div class="cl-mcont">
+            <?php if(isset($this->message)): ?>
+            <div class="alert alert-<?php echo $this->message['type'] ?>">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="fa fa-info-circle sign"></i><strong></strong> <?php echo $this->message['content'] ?>
+            </div>
+            <?php endif; ?>
             <?php echo $this->content; ?>
         </div>
     </div>
@@ -177,120 +176,35 @@ if (defined('RUNNING_FROM_ROOT')) {
 </div>
 
 
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/jquery.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/jquery.cookie/jquery.cookie.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/jquery.pushmenu/js/jPushMenu.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/jquery.nanoscroller/jquery.nanoscroller.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/jquery.sparkline/jquery.sparkline.min.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/jquery.ui/jquery-ui.js' ?>"></script>
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/behaviour/core.js' ?>"></script>
 
-<?php
-echo $this->headScript()
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.cookie/jquery.cookie.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.pushmenu/js/jPushMenu.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.nanoscroller/jquery.nanoscroller.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.sparkline/jquery.sparkline.min.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.ui/jquery-ui.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.gritter/js/jquery.gritter.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/behaviour/core.js');
-$this->headScript()->deleteContainer();
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/behaviour/dashboard.js' ?>"></script>
 
-?>
-
-
-<?php
-echo $this->headScript()
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.codemirror/lib/codemirror.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.codemirror/mode/xml/xml.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.codemirror/mode/css/css.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.codemirror/mode/htmlmixed/htmlmixed.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.codemirror/addon/edit/matchbrackets.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.vectormaps/jquery-jvectormap-1.2.2.min.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.vectormaps/maps/jquery-jvectormap-world-mill-en.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/behaviour/dashboard.js');
-$this->headScript()->deleteContainer();
-
-?>
 
 <!-- Bootstrap core JavaScript================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+
+
+
+<script type="text/javascript" src="<?php echo $this->basePath() . '/assets/layout/js/bootstrap/dist/js/bootstrap.min.js' ?>"></script>
+
 <?php
 echo $this->headScript()
-//    ->appendFile($this->basePath() . '/assets/layout/js/behaviour/voice-commands.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/bootstrap/dist/js/bootstrap.min.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.icheck/icheck.min.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/ckeditor/ckeditor.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/ckeditor/adapters/jquery.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/bootstrap.summernote/dist/summernote.min.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/bootstrap.wysihtml5/src/bootstrap-wysihtml5.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.datatables/jquery.datatables.min.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/dropzone/dropzone.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.datatables/bootstrap-adapter/js/datatables.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.niftymodals/js/jquery.modalEffects.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.niftymodals/js/jquery.modalEffects.js')
-    ->appendFile($this->basePath() . '/assets/ui/datatable/js/boot.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/jquery.gritter/js/jquery.gritter.js')
-    ->appendFile($this->basePath() . '/assets/layout/js/selectTree.js')
 
-//    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.js')
-//    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.pie.js')
-//    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.resize.js')
-//    ->appendFile($this->basePath() . '/assets/layout/js/jquery.flot/jquery.flot.labels.js')
-//    ->appendFile($this->basePath() . '/assets/layout/js/jquery.select2/select2.min.js')
+    ->appendFile($this->basePath() . '/assets/layout/js/jquery.datatables/jquery.datatables.min.js')
+    ->appendFile($this->basePath() . '/assets/layout/js/jquery.datatables/bootstrap-adapter/js/datatables.js')
 ;
 $this->headScript()->deleteContainer();
 
 ?>
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        /*Input & Radio Buttons*/
-        $('.icheck').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass: 'iradio_flat-green'
-        });
-
-        $('label.tree-toggler').click(function () {
-            var icon = $(this).children(".fa");
-            if(icon.hasClass("fa-folder-o")){
-                icon.removeClass("fa-folder-o").addClass("fa-folder-open-o");
-            }else{
-                icon.removeClass("fa-folder-open-o").addClass("fa-folder-o");
-            }
-
-            $(this).parent().children('ul.tree').toggle(300,function(){
-                $(this).parent().toggleClass("open");
-                $(".tree .nscroller").nanoScroller({ preventPageScrolling: true });
-            });
-        });
-    });
-</script>
 
 
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        //initialize the javascript
-        $('.md-trigger').modalEffects();
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass: 'iradio_flat-green'
-        });
-
-        $('#not-primary').click(function(){
-            $.gritter.add({
-                title: 'Primary',
-                text: 'This is a simple Gritter Notification.',
-                class_name: 'primary'
-            });
-        });
-    });
-
-
-    $(".get-user").click(function(){
-        $.ajax({url: "http://localhost/earzeh.com/public/index.php/activate",
-            success: function(result){
-                console.log(result);
-                $('#manam').html(result);
-            }});
-    });
-
-</script>
 
 </body>
 </html>

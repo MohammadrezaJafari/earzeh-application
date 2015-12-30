@@ -45,22 +45,14 @@ class ServiceLang
     /**
      * @var integer
      *
-<<<<<<< HEAD
-     * @ORM\Column(name="order", type="integer", nullable=false)
-=======
      * @ORM\Column(name="`order`", type="integer", nullable=false)
->>>>>>> upstream/master
      */
     private $order;
 
     /**
      * @var \DateTime
      *
-<<<<<<< HEAD
-     * @ORM\Column(name="deleted at", type="datetime", nullable=true)
-=======
      * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
->>>>>>> upstream/master
      */
     private $deletedAt;
 

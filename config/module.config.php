@@ -24,7 +24,6 @@ return array(
             )
         )
     ),
-
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -79,8 +78,9 @@ return array(
         ),
         'factories' => array(
             'Navigation' => 'Ellie\Service\Navigation\ServiceFactory',
-            // 'Ellie\Service\Authentication' => 'Ellie\Service\Authentication\ServiceFactory',
-        ),
+            'Ellie\Service\Acl'=> 'Ellie\Service\Acl\ServiceFactory',
+            'Ellie\Service\Authentication' => 'Ellie\Service\Authentication\ServiceFactory',
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -92,7 +92,6 @@ return array(
             ),
         ),
     ),
-
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
@@ -126,7 +125,7 @@ return array(
             ),
         ),
     ),
-
+    // Placeholder for console routes
     'navigation_manager' => [
 //        "home"=>array(
 //            "label" => "Dashboard",

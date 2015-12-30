@@ -71,15 +71,15 @@ class Request
      */
     private $updatedAt;
 
-//    /**
-//     * @var Service
-//     *
-//     * @ORM\ManyToOne(targetEntity="Service")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
-//     * })
-//     */
-//    private $service;
+    /**
+     * @var Service
+     *
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     * })
+     */
+    private $service;
 
     /**
      * @var User
@@ -91,14 +91,25 @@ class Request
      */
     private $user;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Service")
+//     * @ORM\JoinTable(name="requests_services",
+//     *      joinColumns={@ORM\JoinColumn(name="request_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="service_id", referencedColumnName="id")}
+//     *      )
+//     **/
+//    private $service;
+
     /**
-     * @ORM\ManyToMany(targetEntity="Service")
-     * @ORM\JoinTable(name="requests_services",
-     *      joinColumns={@ORM\JoinColumn(name="request_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="service_id", referencedColumnName="id")}
-     *      )
-     **/
-    private $service;
+     * @ORM\OneToOne(targetEntity="SellerRequest", mappedBy="request")
+     */
+    private $sellInfo;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="BuyerRequest", mappedBy="request")
+     */
+    private $buyInfo;
 
 
     public function __construct()
@@ -266,7 +277,7 @@ class Request
      */
     public function setService(\Application\Entity\Service $service = null)
     {
-        $this->service[] = $service;
+        $this->service = $service;
 
         return $this;
     }
@@ -297,10 +308,67 @@ class Request
     /**
      * Get user
      *
-     * @return \Blog\Entity\User 
+     * @return \Application\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set user_id
+     *
+     * @param integer $userId
+     * @return Request
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Add service
+     *
+     * @param \Application\Entity\Service $service
+     * @return Request
+     */
+    public function addService(\Application\Entity\Service $service)
+    {
+        $this->service[] = $service;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \Application\Entity\Service $service
+     */
+    public function removeService(\Application\Entity\Service $service)
+    {
+        $this->service->removeElement($service);
+    }
+
+
+    public function getSellInfo()
+    {
+        return $this->sellInfo;
+    }
+
+    public function getBuyInfo()
+    {
+        return $this->buyInfo;
     }
 }

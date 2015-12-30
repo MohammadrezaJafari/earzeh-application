@@ -58,6 +58,21 @@ class RequestService
     private $request;
 
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="request_id", type="integer", nullable=false)
+     */
+    private $request_id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="service_id", type="integer", nullable=false)
+     */
+    private $service_id;
+
+
     public function __construct()
     {
         $this->createdAt = (new \DateTime(date("Y-m-d H:i:s")));

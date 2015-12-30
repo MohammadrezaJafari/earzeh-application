@@ -107,6 +107,11 @@ class User
      */
     private $role;
 
+    /**
+     * @ORM\OneToOne(targetEntity="UserDetails", mappedBy="user")
+     */
+    private $userDetails;
+
     public function __construct()
     {
         $this->createdAt = (new \DateTime(date("Y-m-d H:i:s")));
@@ -203,7 +208,7 @@ class User
     /**
      * Get country
      *
-     * @return string
+     * @return string 
      */
     public function getCountry()
     {
@@ -370,4 +375,15 @@ class User
     {
         return $this->role;
     }
+
+    public function getDetails()
+    {
+        return $this->userDetails;
+    }
+
+    public function setDetails($userDetails)
+    {
+        $this->userDetails = $userDetails;
+    }
+
 }

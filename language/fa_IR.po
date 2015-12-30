@@ -19,6 +19,15 @@ msgstr ""
 msgid "Dashboard"
 msgstr "پیشخوان"
 
+msgid "Submit"
+msgstr "ثبت"
+
+msgid "Fa"
+msgstr "فارسی"
+
+msgid "En"
+msgstr "انگلیسی"
+
 
 #: ../view/layout/layout.phtml:36
 msgid "Username"

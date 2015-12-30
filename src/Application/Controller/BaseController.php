@@ -17,6 +17,7 @@ class BaseController extends AbstractActionController{
     protected $lang;
     public function onDispatch(\Zend\Mvc\MvcEvent $e)
     {
+
         $layout = $this->layout();
         $layout->setTemplate('layout/master');
         $this->lang = $this->params('lang');

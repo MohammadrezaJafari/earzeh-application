@@ -14,14 +14,15 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends BaseController
 {
-    public function indexAction()
+    public function langAction()
     {
-        var_dump(2);die();
+        return $this->redirect()->toRoute("home",array('lang' => $this->params('id')));
         return new ViewModel();
     }
 
     public function dashboardAction()
     {
+
         return new ViewModel();
     }
 }

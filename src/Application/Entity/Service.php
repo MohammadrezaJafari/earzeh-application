@@ -21,6 +21,12 @@ class Service
      */
     private $id;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="ServiceLang", mappedBy="service")
+     */
+    private $serviceLang;
+
     /**
      * @var \Service
      *
@@ -63,5 +69,10 @@ class Service
     public function getParent()
     {
         return $this->parent;
+    }
+
+    public function getServiceLang()
+    {
+        return $this->serviceLang;
     }
 }

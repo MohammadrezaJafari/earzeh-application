@@ -48,7 +48,10 @@ class WorkAt
      */
     private $user;
 
+    public function __construct(){
+        $this->startedAt = (new \DateTime(date("Y-m-d H:i:s")));
 
+    }
     /**
      * Get id
      *
@@ -85,10 +88,10 @@ class WorkAt
     /**
      * Set service
      *
-     * @param \Blog\Entity\Service $service
+     * @param \Application\Entity\Service $service
      * @return WorkAt
      */
-    public function setService(\Blog\Entity\Service $service = null)
+    public function setService(\Application\Entity\Service $service = null)
     {
         $this->service = $service;
 
@@ -108,10 +111,10 @@ class WorkAt
     /**
      * Set user
      *
-     * @param \Blog\Entity\User $user
+     * @param \Application\Entity\User $user
      * @return WorkAt
      */
-    public function setUser(\Blog\Entity\User $user = null)
+    public function setUser(\Application\Entity\User $user = null)
     {
         $this->user = $user;
 
